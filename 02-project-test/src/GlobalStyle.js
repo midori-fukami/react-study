@@ -26,7 +26,6 @@ body {
     font-size: 2rem;
     font-weight: 600;
     color: var(--white);
-
   }
 
   h3 {

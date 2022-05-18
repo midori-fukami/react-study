@@ -1,3 +1,5 @@
+/* eslint-disable consistent-return */
+/* eslint-disable no-return-await */
 import {
   SEARCH_BASE_URL,
   POPULAR_BASE_URL,
@@ -5,14 +7,14 @@ import {
   API_KEY,
   REQUEST_TOKEN_URL,
   LOGIN_URL,
-  SESSION_ID_URL
-} from './config';
+  SESSION_ID_URL,
+} from "./config";
 
 const defaultConfig = {
-  method: 'POST',
+  method: "POST",
   headers: {
-    'Content-Type': 'application/json'
-  }
+    "Content-Type": "application/json",
+  },
 };
 
 const apiSettings = {
@@ -22,11 +24,11 @@ const apiSettings = {
       : `${POPULAR_BASE_URL}&page=${page}`;
     return await (await fetch(endpoint)).json();
   },
-  fetchMovie: async movieId => {
+  fetchMovie: async (movieId) => {
     const endpoint = `${API_URL}movie/${movieId}?api_key=${API_KEY}`;
     return await (await fetch(endpoint)).json();
   },
-  fetchCredits: async movieId => {
+  fetchCredits: async (movieId) => {
     const creditsEndpoint = `${API_URL}movie/${movieId}/credits?api_key=${API_KEY}`;
     return await (await fetch(creditsEndpoint)).json();
   },
@@ -39,13 +41,13 @@ const apiSettings = {
     const bodyData = {
       username,
       password,
-      request_token: requestToken
+      request_token: requestToken,
     };
     // First authenticate the requestToken
     const data = await (
       await fetch(LOGIN_URL, {
         ...defaultConfig,
-        body: JSON.stringify(bodyData)
+        body: JSON.stringify(bodyData),
       })
     ).json();
     // Then get the sessionId with the requestToken
@@ -53,7 +55,7 @@ const apiSettings = {
       const sessionId = await (
         await fetch(SESSION_ID_URL, {
           ...defaultConfig,
-          body: JSON.stringify({ request_token: requestToken })
+          body: JSON.stringify({ request_token: requestToken }),
         })
       ).json();
       return sessionId;
@@ -65,12 +67,12 @@ const apiSettings = {
     const rating = await (
       await fetch(endpoint, {
         ...defaultConfig,
-        body: JSON.stringify({ value })
+        body: JSON.stringify({ value }),
       })
     ).json();
 
     return rating;
-  }
+  },
 };
 
 export default apiSettings;
