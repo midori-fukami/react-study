@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-useless-fragment */
 /* eslint-disable no-console */
 /* eslint-disable no-shadow */
 /* eslint-disable react/function-component-definition */
@@ -5,6 +6,8 @@
 import React, { useState, useEffect } from "react";
 
 import { POSTER_SIZE, BACKDROP_SIZE, IMAGE_BASE_URL } from "../config";
+
+import HeroImage from "./HeroImage";
 
 import useHomeFetch from "../hooks/useHomeFetch";
 
@@ -15,6 +18,16 @@ const Home = () => {
 
   console.log(state);
 
-  return <div>Home Page</div>;
+  return (
+    <>
+      {state.results[0] ? (
+        <HeroImage
+          image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${state.results[0].BACKDROP_SIZE}`}
+          title={state.results[0].original_title}
+          text={state.results[0].overview}
+        />
+      ) : null}
+    </>
+  );
 };
 export default Home;
