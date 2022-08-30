@@ -13,7 +13,11 @@
       {
         "extensions": [".js", ".jsx"]
       }
-    ]
+    ],
+    "no-unused-vars": "off",
+    "react/prop-types": "off",
+    "arrow-body-style": "off",
+    "react/function-component-definition": "off"
   },
   "env": {
     "es6": true,
